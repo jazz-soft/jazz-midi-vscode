@@ -1,0 +1,1 @@
+console.log('jazz-midi-vscode coming soon...');
