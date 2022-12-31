@@ -1,6 +1,6 @@
 {
-  "name": "demo-midi",
-  "displayName": "demo-midi",
+  "name": "midi-demo",
+  "displayName": "midi-demo",
   "description": "MIDI extension demo",
   "version": "0.0.1",
   "engines": {
@@ -10,13 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:demo-midi.helloWorld"
+    "onCommand:midi-demo.piano"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "demo-midi.helloWorld",
-      "title": "Hello World"
+      "command": "midi-demo.piano",
+      "title": "Piano",
+      "category": "MIDI Demo"
     }]
   },
   "scripts": {
