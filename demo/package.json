@@ -22,6 +22,9 @@
         "selector": [
           {
             "filenamePattern": "*.mid"
+          },
+          {
+            "filenamePattern": "*.midi"
           }
         ]
       }
