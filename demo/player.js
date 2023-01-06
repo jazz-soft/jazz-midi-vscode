@@ -1,15 +1,17 @@
 const vscode = require('vscode');
 
 function openCustomDocument(uri, context, token) {
-    console.log('running openCustomDocument()');
     return {
         uri: uri,
         dispose: function() {}
     };
 }
 
-function resolveCustomEditor(document, panel, token) {
-    console.log('running resolveCustomEditor()');
+async function resolveCustomEditor(document, panel, token) {
+    
+
+    var data = new Uint8Array(await vscode.workspace.fs.readFile(document.uri));
+
     panel.webview.options = { enableScripts: true };
     panel.webview.html = `<!DOCTYPE html>
 <html>
@@ -18,12 +20,27 @@ function resolveCustomEditor(document, panel, token) {
 <script src="https://cdn.jsdelivr.net/npm/jzz-midi-smf"></script>
 <script src="https://cdn.jsdelivr.net/npm/jzz-gui-player"></script>
 <script src="https://cdn.jsdelivr.net/npm/jzz-synth-tiny"></script>
+<style>
+#text { white-space: pre; font-family: monospace; }
+</style>
 </head>
 <body>
-<div id="player"></div>
+<p><div id="player"></div></p>
+<p><div id="text"></div></p>
+
 <script>
+var data = new Uint8Array([${data}]);
 JZZ.synth.Tiny.register('Web Audio');
 var player = new JZZ.gui.Player('player');
+try {
+    var smf = JZZ.MIDI.SMF(data);
+    player.load(smf);
+    smf = smf.toString();
+}
+catch (e) {
+    smf = e.toString();
+}
+document.getElementById('text').innerHTML = smf;
 </script>
 </body>
 </html>`;
