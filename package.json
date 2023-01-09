@@ -12,7 +12,7 @@
   ],
   "author": "jazz-soft (https://jazz-soft.net/)",
   "dependencies": {
-    "jzz": "^1.5.6"
+    "jzz": "^1.5.8"
   },
   "repository": {
     "type": "git",

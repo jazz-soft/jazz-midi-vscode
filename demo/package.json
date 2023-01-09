@@ -10,8 +10,9 @@
     "Other"
   ],
   "activationEvents": [
+    "onCommand:midi-demo.info",
     "onCommand:midi-demo.note",
-    "onCommand:midi-demo.piano"
+    "onCommand:midi-demo.scale"
   ],
   "browser": "./browser.js",
   "main": "./main.js",
@@ -32,13 +33,18 @@
     ],
     "commands": [
       {
+        "command": "midi-demo.info",
+        "title": "Info",
+        "category": "MIDI Demo"
+      },
+      {
         "command": "midi-demo.note",
         "title": "Play Note",
         "category": "MIDI Demo"
       },
       {
-        "command": "midi-demo.piano",
-        "title": "Piano",
+        "command": "midi-demo.scale",
+        "title": "Play Scale",
         "category": "MIDI Demo"
       }
     ]
@@ -48,6 +54,11 @@
     "compile": "webpack",
     "lint": "eslint .",
     "test": "node ./test/runTest.js"
+  },
+  "dependencies": {
+    "jzz": "^1.5.8",
+    "jzz-midi-smf": "^1.7.1",
+    "jzz-synth-tiny": "^1.3.3"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
@@ -62,9 +73,5 @@
     "typescript": "^4.9.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
-  },
-  "dependencies": {
-    "jzz": "^1.5.6",
-    "jzz-midi-smf": "^1.7.1"
   }
 }
