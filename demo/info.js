@@ -1,12 +1,17 @@
 const vscode = require('vscode');
 const JZZ = require('jzz');
 
+var panel;
+
 function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('midi-demo.info', async function () {
-        const panel = vscode.window.createWebviewPanel(
-            'midi-demo.info-view', 'MIDI Info',
-            vscode.ViewColumn.One, { enableScripts: true }
-        );
+        const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
+        if (panel) {
+            panel.reveal(column);
+            return;
+        }
+        panel = vscode.window.createWebviewPanel('midi-demo.info-view', 'MIDI Info', column, { enableScripts: true });
+        panel.onDidDispose(() => { panel = undefined; }, null, context.subscriptions);
         var info = await JZZ().info();
         var inputs = 'none';
         var outputs = 'none';
