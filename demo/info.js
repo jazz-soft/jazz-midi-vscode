@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const JZZ = require('jzz');
+const JM = require('jazz-midi');
 
 var panel;
 
@@ -29,12 +30,15 @@ function activate(context) {
                 outputs += x.name;
             }
         }
+        function ref(a, b) {
+            return JM ? panel.webview.asWebviewUri(vscode.Uri.file(context.extensionPath + '/' + a)) : b;
+        }
         panel.webview.html =`<!DOCTYPE html>
 <html>
 <head>
-<script src="https://cdn.jsdelivr.net/npm/jzz"></script>
-<script src="https://cdn.jsdelivr.net/npm/jzz-synth-tiny"></script>
-<script src="https://cdn.jsdelivr.net/npm/jzz-input-kbd"></script>
+<script src="${ref('node_modules/jzz/javascript/JZZ.js', 'https://cdn.jsdelivr.net/npm/jzz')}"></script>
+<script src="${ref('node_modules/jzz-synth-tiny/javascript/JZZ.synth.Tiny.js', 'https://cdn.jsdelivr.net/npm/jzz-synth-tiny')}"></script>
+<script src="${ref('node_modules/jzz-input-kbd/javascript/JZZ.input.Kbd.js', 'https://cdn.jsdelivr.net/npm/jzz-input-kbd')}"></script>
 </head>
 <body>
 <h2>Back End</h2>
