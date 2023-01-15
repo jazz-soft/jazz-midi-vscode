@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const JZZ = require('jzz');
+const JMVSC = require('jazz-midi-vscode');
 const JM = require('jazz-midi');
 
 var panel;
@@ -36,6 +37,7 @@ function activate(context) {
         panel.webview.html =`<!DOCTYPE html>
 <html>
 <head>
+<script src="${ref('node_modules/jazz-midi-vscode/main.js', 'https://cdn.jsdelivr.net/npm/jazz-midi-vscode')}"></script>
 <script src="${ref('node_modules/jzz/javascript/JZZ.js', 'https://cdn.jsdelivr.net/npm/jzz')}"></script>
 <script src="${ref('node_modules/jzz-synth-tiny/javascript/JZZ.synth.Tiny.js', 'https://cdn.jsdelivr.net/npm/jzz-synth-tiny')}"></script>
 <script src="${ref('node_modules/jzz-input-kbd/javascript/JZZ.input.Kbd.js', 'https://cdn.jsdelivr.net/npm/jzz-input-kbd')}"></script>
