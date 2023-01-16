@@ -4,7 +4,8 @@
   "description": "coming soon",
   "main": "main.js",
   "scripts": {
-    "test": "mocha test/mocha.js"
+    "test": "nyc mocha test/mocha.js",
+    "coverage": "nyc report --reporter=lcov"
   },
   "keywords": [
     "midi",
@@ -15,7 +16,8 @@
     "jzz": "^1.5.8"
   },
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
   },
   "repository": {
     "type": "git",
