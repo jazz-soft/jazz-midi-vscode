@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "nyc mocha test/mocha.js",
+    "lint": "eslint main.js test",
     "coverage": "nyc report --reporter=lcov"
   },
   "keywords": [
@@ -16,6 +17,7 @@
     "jzz": "^1.5.8"
   },
   "devDependencies": {
+    "eslint": "^8.32.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0"
   },
