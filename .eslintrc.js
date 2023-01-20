@@ -6,7 +6,7 @@ module.exports = {
   },
   "extends": "eslint:recommended", 
   "parserOptions": {
-    "ecmaVersion": 5
+    "ecmaVersion": 6
   },
   "overrides": [
     {
@@ -24,6 +24,7 @@ module.exports = {
       "globals": {
         "JZZ": "readonly",
         "define": "readonly",
+        "acquireVsCodeApi": "readonly",
         "webkitAudioContext": "readonly"
       },
       "rules": {
