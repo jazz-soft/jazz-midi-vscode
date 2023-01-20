@@ -34,6 +34,8 @@ function activate(context) {
         function ref(a, b) {
             return JM ? panel.webview.asWebviewUri(vscode.Uri.file(context.extensionPath + '/' + a)) : b;
         }
+        JMVSC.initView(panel.webview);
+
         panel.webview.html =`<!DOCTYPE html>
 <html>
 <head>
@@ -92,6 +94,7 @@ JZZ().and(function() {
             outputs += x.name;
         }
     }
+    document.getElementById('wvjzz').innerHTML = info.engine;
     document.getElementById('wvin').innerHTML = inputs;
     document.getElementById('wvout').innerHTML = outputs;
 })
