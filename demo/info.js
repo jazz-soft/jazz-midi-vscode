@@ -1,7 +1,6 @@
 const vscode = require('vscode');
 const JZZ = require('jzz');
 const JMVSC = require('jazz-midi-vscode');
-const JM = require('jazz-midi');
 
 var panel;
 
@@ -17,22 +16,23 @@ function activate(context) {
         var info = await JZZ().info();
         var inputs = 'none';
         var outputs = 'none';
+        var x;
         if (info.inputs.length) {
             inputs = '';
-            for (var x of info.inputs) {
+            for (x of info.inputs) {
                 if (inputs) inputs += '; ';
                 inputs += x.name;
             }
         }
         if (info.outputs.length) {
             outputs = '';
-            for (var x of info.outputs) {
+            for (x of info.outputs) {
                 if (outputs) outputs += '; ';
                 outputs += x.name;
             }
         }
         function ref(a, b) {
-            return JM ? panel.webview.asWebviewUri(vscode.Uri.file(context.extensionPath + '/' + a)) : b;
+            return JMVSC.context() == 'backend' ? panel.webview.asWebviewUri(vscode.Uri.file(context.extensionPath + '/' + a)) : b;
         }
         JMVSC.initView(panel.webview);
 

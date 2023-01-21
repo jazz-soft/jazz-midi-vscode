@@ -13,13 +13,18 @@
   }
 })(this, function() {
 
-  var _ver = '0.0.4';
-  var JMVSC = { version: function() { return _ver; } };
+  var _ver = '0.0.5';
+  var _env = 'webextension';
+  var JMVSC = {
+    version: function() { return _ver; },
+    context: function() { return _env; }
+  };
   var webview = false;
   try {
     if (document) webview = true;
   } catch (e) {/**/}
   if (webview) {
+    _env = 'webview';
     const vscode = acquireVsCodeApi();
     document.addEventListener('jazz-midi', function(msg) {
       vscode.postMessage({ type: 'jazz-midi', detail: msg.detail });
@@ -32,6 +37,7 @@
   }
   else {
     if (require('jazz-midi')) {
+      _env = 'backend';
       var JZZ = require('jzz');
       JMVSC.initView = function(vw) {
         vw.onDidReceiveMessage(function(msg) {

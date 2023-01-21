@@ -7,6 +7,9 @@ describe('webview', function() {
   it('version ' + version, function() {
     assert.equal(JMVSC.version(), version);
   });
+  it('context: webview', function() {
+    assert.equal(JMVSC.context(), 'webview');
+  });
   it('event: web-midi', function() {
     document.dispatchEvent(new CustomEvent('jazz-midi'));
   });
