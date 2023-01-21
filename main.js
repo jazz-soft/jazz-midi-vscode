@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '0.0.3';
+  var _ver = '0.0.4';
   var JMVSC = { version: function() { return _ver; } };
   var webview = false;
   try {
