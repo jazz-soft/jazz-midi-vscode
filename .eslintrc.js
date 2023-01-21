@@ -15,6 +15,7 @@ module.exports = {
         "ecmaVersion": 2017
       },
       "globals": {
+        "vscode": "readonly",
         "describe": "readonly",
         "it": "readonly"
       }

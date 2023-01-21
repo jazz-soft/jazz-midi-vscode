@@ -25,10 +25,6 @@ function WIN() {
   this.lst = [];
 }
 function VSC() {}
-function CustomEvent(t, d) {
-  this.type = t;
-  this.detail = d;
-}
 function webview() {
   DOC.prototype.addEventListener = function(t, f) {
     this.lst.push([t, f]);
