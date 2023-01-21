@@ -8,7 +8,7 @@ describe('webview', function() {
     assert.equal(JMVSC.version(), version);
   });
   it('event: web-midi', function() {
-    document.dispatchEvent({ type: 'jazz-midi' });
+    document.dispatchEvent(new CustomEvent('jazz-midi'));
   });
   it('event: web-midi-msg', function() {
     window.dispatchEvent({ type: 'message', data: { type: 'jazz-midi-msg' } });
@@ -23,6 +23,10 @@ function DOC() {
 }
 function WIN() {
   this.lst = [];
+}
+function CustomEvent(t, d) {
+  this.type = t;
+  this.detail = d;
 }
 function VSC() {}
 function webview() {
