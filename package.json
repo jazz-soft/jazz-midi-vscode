@@ -1,10 +1,10 @@
 {
   "name": "jazz-midi-vscode",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "coming soon",
   "main": "main.js",
   "scripts": {
-    "test": "nyc mocha test/mocha.js",
+    "test": "nyc mocha test/wv.js && nyc --no-clean mocha test/be.js",
     "lint": "eslint main.js test",
     "coverage": "nyc report --reporter=lcov"
   },
