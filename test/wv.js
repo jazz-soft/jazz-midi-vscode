@@ -47,5 +47,6 @@ function webview() {
   global.document = new DOC();
   global.window = new WIN();
   global.vscode = new VSC();
+  global.CustomEvent = CustomEvent;
   global.acquireVsCodeApi = function() { return vscode; };
 }
