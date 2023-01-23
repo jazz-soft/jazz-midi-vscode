@@ -56,7 +56,7 @@
     "test": "node ./test/runTest.js"
   },
   "dependencies": {
-    "jazz-midi-vscode": "^0.0.5",
+    "jazz-midi-vscode": "^0.0.6",
     "jzz": "^1.5.9",
     "jzz-gui-player": "^1.6.1",
     "jzz-input-kbd": "^1.2.5",

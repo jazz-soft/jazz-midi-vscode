@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '0.0.5';
+  var _ver = '0.0.6';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
@@ -39,12 +39,25 @@
     if (require('jazz-midi')) {
       _env = 'backend';
       var JZZ = require('jzz');
+      var CLs = [];
+      function client(vw, n) {
+        var cl;
+        for (cl of CLs) if (cl.vw == vw && cl.n == n) return cl;
+        cl = { vw: vw, n: n };
+        CLs.push(cl);
+        return cl;
+      }
+      function remove(vw) {
+        var CC = [];
+        var cl;
+        for (cl of CLs) if (cl.vw != vw) CC.push(cl);
+        CLs = CC;
+      }
       JMVSC.initView = function(vw) {
         vw.onDidReceiveMessage(function(msg) {
-          //console.log('JMVSC received message:', msg);
-          var i;
+          var i, c, p, s;
           if (msg.type == 'jazz-midi') {
-            if (!msg.detail) {
+            if (!msg.detail || msg.detail[0] == 'version') {
               vw.postMessage({ type: 'jazz-midi-msg', detail: ['version', 0, _ver] });
             }
             else if (msg.detail[0] == 'refresh') {
@@ -60,6 +73,31 @@
                 }
                 vw.postMessage({ type: 'jazz-midi-msg', detail: ['refresh', { ins: ins, outs: outs }] });
               });
+            }
+            else if (msg.detail[0] == 'openout') {
+              c = client(vw, msg.detail[1]);
+              p = c.out;
+              s = p ? p.name : '';
+              if (s == msg.detail[2]) {
+                vw.postMessage({ type: 'jazz-midi-msg', detail: ['openout', msg.detail[1], msg.detail[2]] });
+                return;
+              }
+              JZZ().openMidiOut(msg.detail[2]).then(function() {
+                c.out = this;
+                if (p) p.close();
+                vw.postMessage({ type: 'jazz-midi-msg', detail: ['openout', msg.detail[1], msg.detail[2]] });
+              }, function() {
+                vw.postMessage({ type: 'jazz-midi-msg', detail: ['openout', msg.detail[1], s] });
+              });
+            }
+            else if (msg.detail[0] == 'closeout') {
+              c = client(vw, msg.detail[1]);
+              if (c.out) c.out.close();
+              delete c.out;
+            }
+            else if (msg.detail[0] == 'play') {
+              c = client(vw, msg.detail[1]);
+              if (c.out) c.out.send(msg.detail.slice(2));
             }
           }
         });
