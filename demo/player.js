@@ -18,7 +18,7 @@ async function resolveCustomEditor(document, panel, token) {
     function ref(a, b) {
         return JMVSC.context() == 'backend' ? panel.webview.asWebviewUri(vscode.Uri.file(extpath + '/' + a)) : b;
     }
-    JMVSC.initView(panel.webview);
+    JMVSC.init(panel);
 
     panel.webview.html = `<!DOCTYPE html>
 <html>

@@ -1,7 +1,7 @@
 {
   "name": "jazz-midi-vscode",
   "version": "0.0.6",
-  "description": "coming soon",
+  "description": "MIDI for VSCode",
   "main": "main.js",
   "scripts": {
     "test": "nyc mocha test/wv.js && nyc --no-clean mocha test/be.js",

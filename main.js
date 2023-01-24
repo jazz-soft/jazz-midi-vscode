@@ -40,20 +40,15 @@
       _env = 'backend';
       var JZZ = require('jzz');
       var CLs = [];
-      function client(vw, n) {
-        var cl;
-        for (cl of CLs) if (cl.vw == vw && cl.n == n) return cl;
-        cl = { vw: vw, n: n };
-        CLs.push(cl);
-        return cl;
+      function client(pan, n) {
+        var c;
+        for (c of CLs) if (c.pan == pan && c.n == n) return c;
+        c = { pan: pan, n: n };
+        CLs.push(c);
+        return c;
       }
-      function remove(vw) {
-        var CC = [];
-        var cl;
-        for (cl of CLs) if (cl.vw != vw) CC.push(cl);
-        CLs = CC;
-      }
-      JMVSC.initView = function(vw) {
+      JMVSC.init = function(pan) {
+        var vw = pan.webview;
         vw.onDidReceiveMessage(function(msg) {
           var i, c, p, s;
           if (msg.type == 'jazz-midi') {
@@ -75,9 +70,9 @@
               });
             }
             else if (msg.detail[0] == 'openout') {
-              c = client(vw, msg.detail[1]);
+              c = client(pan, msg.detail[1]);
               p = c.out;
-              s = p ? p.name : '';
+              s = p ? p.name() : '';
               if (s == msg.detail[2]) {
                 vw.postMessage({ type: 'jazz-midi-msg', detail: ['openout', msg.detail[1], msg.detail[2]] });
                 return;
@@ -91,20 +86,34 @@
               });
             }
             else if (msg.detail[0] == 'closeout') {
-              c = client(vw, msg.detail[1]);
+              c = client(pan, msg.detail[1]);
               if (c.out) c.out.close();
               delete c.out;
             }
             else if (msg.detail[0] == 'play') {
-              c = client(vw, msg.detail[1]);
+              c = client(pan, msg.detail[1]);
               if (c.out) c.out.send(msg.detail.slice(2));
             }
           }
         });
+        pan.onDidDispose(function() {
+          var CC = [];
+          var c;
+          for (c of CLs) {
+            if (c.pan == pan) {
+              if (c.out) c.out.close();
+              if (c.in) c.in.close();
+            }
+            else {
+              CC.push(c);
+            }
+          }
+          CLs = CC;
+        });
       }
     }
     else {
-      JMVSC.initView = function() {};
+      JMVSC.init = function() {};
     }
   }
 

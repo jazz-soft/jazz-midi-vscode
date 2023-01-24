@@ -34,8 +34,8 @@ function activate(context) {
         function ref(a, b) {
             return JMVSC.context() == 'backend' ? panel.webview.asWebviewUri(vscode.Uri.file(context.extensionPath + '/' + a)) : b;
         }
-        JMVSC.initView(panel.webview);
-
+        JMVSC.init(panel);
+    
         panel.webview.html =`<!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +77,7 @@ var midiin, midiout;
 JZZ().and(function() {
     var info = this.info();
     midiin = JZZ().openMidiIn('HTML Piano');
-    midiout = JZZ().openMidiOut('Web Audio');
+    midiout = JZZ().openMidiOut();
     midiin.connect(midiout);
     var outputs = 'none';
     if (info.inputs.length) {
