@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '0.0.6';
+  var _ver = '0.0.7';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
@@ -85,10 +85,34 @@
                 vw.postMessage({ type: 'jazz-midi-msg', detail: ['openout', msg.detail[1], s] });
               });
             }
+            else if (msg.detail[0] == 'openin') {
+              c = client(pan, msg.detail[1]);
+              p = c.in;
+              s = p ? p.name() : '';
+              if (s == msg.detail[2]) {
+                vw.postMessage({ type: 'jazz-midi-msg', detail: ['openin', msg.detail[1], msg.detail[2]] });
+                return;
+              }
+              JZZ().openMidiIn(msg.detail[2]).then(function() {
+                c.in = this;
+                if (p) p.close();
+                vw.postMessage({ type: 'jazz-midi-msg', detail: ['openin', msg.detail[1], msg.detail[2]] });
+                c.in.connect(function(midi) {
+                  if (midi.length) vw.postMessage({ type: 'jazz-midi-msg', detail: ['midi', msg.detail[1], 0].concat(midi) });
+                });
+              }, function() {
+                vw.postMessage({ type: 'jazz-midi-msg', detail: ['openin', msg.detail[1], s] });
+              });
+            }
             else if (msg.detail[0] == 'closeout') {
               c = client(pan, msg.detail[1]);
               if (c.out) c.out.close();
               delete c.out;
+            }
+            else if (msg.detail[0] == 'closein') {
+              c = client(pan, msg.detail[1]);
+              if (c.in) c.in.close();
+              delete c.in;
             }
             else if (msg.detail[0] == 'play') {
               c = client(pan, msg.detail[1]);

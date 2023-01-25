@@ -1,7 +1,7 @@
 backend(); // VSCode Back End environment
 const assert = require('assert');
 const JMVSC = require('..');
-var vw, pan;
+var vw, pan, fake_in;
 
 describe('backend', function() {
   it('context: backend', function() {
@@ -22,9 +22,24 @@ describe('backend', function() {
     vw.sendMessage({ type: 'jazz-midi', detail: ['openout', 0, 'Fake MIDI-Out 2'] });
     vw.sendMessage({ type: 'jazz-midi', detail: ['openout', 1, 'Fake MIDI-Out 1'] });
   });
+  it('openin', function() {
+    vw.sendMessage({ type: 'jazz-midi', detail: ['openin', 0, 'Not existent'] });
+    vw.sendMessage({ type: 'jazz-midi', detail: ['openin', 0, 'Fake MIDI-In 1'] });
+    vw.sendMessage({ type: 'jazz-midi', detail: ['openin', 0, 'Fake MIDI-In 1'] });
+    vw.sendMessage({ type: 'jazz-midi', detail: ['openin', 0, 'Fake MIDI-In 2'] });
+    vw.sendMessage({ type: 'jazz-midi', detail: ['openin', 1, 'Fake MIDI-In 1'] });
+  });
   it('closeout', function() {
     vw.sendMessage({ type: 'jazz-midi', detail: ['closeout', 0] });
     vw.sendMessage({ type: 'jazz-midi', detail: ['closeout', 0] });
+  });
+  it('closein', function() {
+    vw.sendMessage({ type: 'jazz-midi', detail: ['closein', 0] });
+    vw.sendMessage({ type: 'jazz-midi', detail: ['closein', 0] });
+  });
+  it('midi', function() {
+    fake_in._emit([]);
+    fake_in._emit([0x90, 0x60, 0x7f]);
   });
   it('play', function() {
     vw.sendMessage({ type: 'jazz-midi', detail: ['play', 0, 0x90, 0x60, 0x7f] });
@@ -58,7 +73,8 @@ function backend() {
   pan = new PAN(vw);
   global.document = undefined;
   const JZZ = require('jzz');
-  JZZ.addMidiIn('Fake MIDI-In 1', JZZ.Widget());
+  fake_in = JZZ.Widget();
+  JZZ.addMidiIn('Fake MIDI-In 1', fake_in);
   JZZ.addMidiIn('Fake MIDI-In 2', JZZ.Widget());
   JZZ.addMidiOut('Fake MIDI-Out 1', JZZ.Widget());
   JZZ.addMidiOut('Fake MIDI-Out 2', JZZ.Widget());
