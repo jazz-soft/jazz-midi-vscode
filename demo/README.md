@@ -1,5 +1,7 @@
 # midi-demo
 
+[![](https://raw.githubusercontent.com/jazz-soft/jazz-midi-vscode/main/demo/demo.png)](https://github.com/jazz-soft/jazz-midi-vscode/tree/main/demo)
+
 ### Test in VSCode
 - `code . &`
 - Debug -> Run Extension

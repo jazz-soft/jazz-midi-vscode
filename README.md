@@ -6,5 +6,6 @@
 [![build](https://github.com/jazz-soft/jazz-midi-vscode/actions/workflows/build.yml/badge.svg)](https://github.com/jazz-soft/jazz-midi-vscode/actions)
 [![Coverage Status](https://coveralls.io/repos/github/jazz-soft/jazz-midi-vscode/badge.svg?branch=main)](https://coveralls.io/github/jazz-soft/jazz-midi-vscode?branch=main)
 
+## MIDI for VSCode
 
-Coming soon...
+[![](https://raw.githubusercontent.com/jazz-soft/jazz-midi-vscode/main/demo/demo.png)](https://github.com/jazz-soft/jazz-midi-vscode/tree/main/demo)
