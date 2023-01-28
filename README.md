@@ -8,6 +8,8 @@
 
 ## MIDI for VSCode
 
+Enable MIDI in your VSCode extensions.
+
 [![](https://raw.githubusercontent.com/jazz-soft/jazz-midi-vscode/main/demo/demo.png)](https://github.com/jazz-soft/jazz-midi-vscode/tree/main/demo)
 
 ## Usage

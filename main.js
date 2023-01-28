@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '0.0.8';
+  var _ver = '0.0.9';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
@@ -40,7 +40,7 @@
       _env = 'backend';
       var JZZ = require('jzz');
       var CLs = [];
-      function client(pan, n) {
+      var client = function(pan, n) {
         var c;
         for (c of CLs) if (c.pan == pan && c.n == n) return c;
         c = { pan: pan, n: n };
