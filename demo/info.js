@@ -13,7 +13,7 @@ function activate(context) {
         }
         panel = vscode.window.createWebviewPanel('midi-demo.info-view', 'MIDI Info', column, { enableScripts: true });
         panel.onDidDispose(() => { panel = undefined; }, null, context.subscriptions);
-        var info = await JZZ().info();
+        var info = (await JZZ()).info();
         var inputs = 'none';
         var outputs = 'none';
         var x;
