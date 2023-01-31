@@ -12,6 +12,9 @@ describe('backend', function() {
     vw.sendMessage({ type: 'jazz-midi' });
     vw.sendMessage({ type: 'other' });
   });
+  it('new', function() {
+    vw.sendMessage({ type: 'jazz-midi', detail: ['new'] });
+  });
   it('refresh', function() {
     vw.sendMessage({ type: 'jazz-midi', detail: ['refresh'] });
   });

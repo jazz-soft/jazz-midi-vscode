@@ -43,6 +43,7 @@ function activate(context) {
 <script src="${ref('node_modules/jzz/javascript/JZZ.js', 'https://cdn.jsdelivr.net/npm/jzz')}"></script>
 <script src="${ref('node_modules/jzz-synth-tiny/javascript/JZZ.synth.Tiny.js', 'https://cdn.jsdelivr.net/npm/jzz-synth-tiny')}"></script>
 <script src="${ref('node_modules/jzz-input-kbd/javascript/JZZ.input.Kbd.js', 'https://cdn.jsdelivr.net/npm/jzz-input-kbd')}"></script>
+<script src="${ref('node_modules/jzz-gui-select/javascript/JZZ.gui.Select.js', 'https://cdn.jsdelivr.net/npm/jzz-gui-select')}"></script>
 </head>
 <body>
 <h2>Back End</h2>
@@ -57,6 +58,10 @@ function activate(context) {
 <div>MIDI engine: <span id="wvjzz">none<span></div>
 <div>MIDI outputs: <span id="wvout">none<span></div>
 <div>MIDI inputs: <span id="wvin">none<span></div>
+<p>
+MIDI-In: <select id="midi_in"></select> ⟹
+MIDI-Out: <select id="midi_out"></select>
+</p>
 <p id="piano"></p>
 <script>
 try {
@@ -72,13 +77,14 @@ try {
     }
 } catch (e) {}
 JZZ.synth.Tiny.register('Web Audio');
-JZZ.input.Kbd.register('HTML Piano', { at: 'piano', from: 'C5', to: 'B5' });
-var midiin, midiout;
+var piano = JZZ.input.Kbd({ at: 'piano', from: 'C5', to: 'B5' });
+JZZ.addMidiIn('HTML Piano', piano);
+var midi_in = JZZ.gui.SelectMidiIn({ at: 'midi_in' });
+var midi_out = JZZ.gui.SelectMidiOut({ at: 'midi_out' });
 JZZ().and(function() {
     var info = this.info();
-    midiin = JZZ().openMidiIn('HTML Piano');
-    midiout = JZZ().openMidiOut();
-    midiin.connect(midiout);
+    midi_in.connect(piano);
+    piano.connect(midi_out);
     var outputs = 'none';
     if (info.inputs.length) {
         inputs = '';
@@ -97,6 +103,9 @@ JZZ().and(function() {
     document.getElementById('wvjzz').innerHTML = info.engine;
     document.getElementById('wvin').innerHTML = inputs;
     document.getElementById('wvout').innerHTML = outputs;
+
+    midi_in.select();
+    midi_out.select();
 })
 </script>
 </body>

@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '0.1.1';
+  var _ver = '0.1.2';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
@@ -50,11 +50,17 @@
     }
     JMVSC.init = function(pan) {
       var vw = pan.webview;
+      client(pan, 0);
       vw.onDidReceiveMessage(function(msg) {
         var i, c, p, s;
         if (msg.type == 'jazz-midi') {
           if (!msg.detail || msg.detail[0] == 'version') {
             vw.postMessage({ type: 'jazz-midi-msg', detail: ['version', 0, _ver] });
+          }
+          else if (msg.detail[0] == 'new') {
+            i = 0;
+            for (c of CLs) if (c.pan == pan) i++;
+            vw.postMessage({ type: 'jazz-midi-msg', detail: ['version', i, _ver] });
           }
           else if (msg.detail[0] == 'refresh') {
             JZZ().refresh().and(function() {
