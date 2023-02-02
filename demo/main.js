@@ -1,3 +1,4 @@
+const vscode = require('vscode');
 const JZZ = require('jzz');
 const player = require('./player');
 const info = require('./info');
@@ -6,8 +7,15 @@ const scale = require('./scale');
 var tick;
 
 function activate(context) {
+    var needMsg = true;
     var vmOut = JZZ.Widget();
-    vmOut.connect(function(msg) { console.log(msg.toString()); });
+    vmOut.connect(function(msg) {
+        if (needMsg) {
+            vscode.window.showInformationMessage('"Virtual MIDI-Out" outputs MIDI messages to the console.');
+            needMsg = false;
+        }
+        console.log(msg.toString());
+    });
     var vmIn = JZZ.Widget();
     var n;
     tick = setInterval(function() {

@@ -105,7 +105,7 @@ JZZ().and(function() {
     document.getElementById('wvout').innerHTML = outputs;
 
     midi_in.select();
-    midi_out.select();
+    midi_out.select(/^(?:(?!Virtual).)*$/);
 })
 </script>
 </body>
