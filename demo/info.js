@@ -104,6 +104,7 @@ JZZ().and(function() {
     document.getElementById('wvin').innerHTML = inputs;
     document.getElementById('wvout').innerHTML = outputs;
 
+    midi_in.onSelect = function() { piano.clear(); };
     midi_in.select();
     midi_out.select(/^(?:(?!Virtual).)*$/);
 })
