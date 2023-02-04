@@ -40,6 +40,7 @@ async function resolveCustomEditor(document, panel, token) {
 var data = new Uint8Array([${data}]);
 JZZ.synth.Tiny.register('Web Audio');
 var player = new JZZ.gui.Player('player');
+player.select(/^(?:(?!Virtual).)*$/);
 try {
     var smf = JZZ.MIDI.SMF(data);
     player.load(smf);
