@@ -1,6 +1,6 @@
 {
   "name": "jazz-midi-vscode",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "MIDI for VSCode",
   "main": "main.js",
   "scripts": {

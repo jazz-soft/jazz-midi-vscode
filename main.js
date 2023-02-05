@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '0.1.2';
+  var _ver = '1.0.0';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
