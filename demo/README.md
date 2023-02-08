@@ -11,6 +11,9 @@
 - open MIDI file in the File Explorer - MIDI Player (webview)
 
 ## Run
+### Install dependencies
+- `npm install`
+
 ### Test in VSCode
 - `code . &`
 - Debug -> Run Extension
