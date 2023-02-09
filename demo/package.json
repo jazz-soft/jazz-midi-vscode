@@ -17,6 +17,15 @@
   "browser": "./browser.js",
   "main": "./main.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "midi-demo.piano",
+          "name": "Piano"
+        }
+      ]
+    },
     "customEditors": [
       {
         "viewType": "midi-demo.player",

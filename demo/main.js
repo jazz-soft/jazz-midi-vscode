@@ -4,6 +4,7 @@ const player = require('./player');
 const info = require('./info');
 const note = require('./note');
 const scale = require('./scale');
+const piano = require('./piano');
 var tick;
 
 function activate(context) {
@@ -35,6 +36,7 @@ function activate(context) {
     info.activate(context);
     note.activate(context);
     scale.activate(context);
+    piano.activate(context);
 }
 
 function deactivate() {
@@ -43,6 +45,7 @@ function deactivate() {
     info.deactivate();
     note.deactivate();
     scale.deactivate();
+    piano.deactivate();
 }
 
 module.exports = {
