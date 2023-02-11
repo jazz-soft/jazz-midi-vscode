@@ -2,9 +2,10 @@ const vscode = require('vscode');
 const JZZ = require('jzz');
 const JMVSC = require('jazz-midi-vscode');
 
-var panel;
-
 function activate(context) {
+    const extpath = context.extensionPath;
+    var panel;
+
     context.subscriptions.push(vscode.commands.registerCommand('midi-demo.info', async function () {
         const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
         if (panel) {
@@ -32,7 +33,7 @@ function activate(context) {
             }
         }
         function ref(a, b) {
-            return JMVSC.context() == 'backend' ? panel.webview.asWebviewUri(vscode.Uri.file(context.extensionPath + '/' + a)) : b;
+            return JMVSC.context() == 'backend' ? panel.webview.asWebviewUri(vscode.Uri.file(extpath + '/' + a)) : b;
         }
         JMVSC.init(panel);
     

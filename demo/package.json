@@ -9,11 +9,6 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:midi-demo.info",
-    "onCommand:midi-demo.note",
-    "onCommand:midi-demo.scale"
-  ],
   "browser": "./browser.js",
   "main": "./main.js",
   "contributes": {
