@@ -17,12 +17,15 @@ function activate(context) {
             <head>
             <script src="${ref('node_modules/jazz-midi-vscode/main.js', 'https://cdn.jsdelivr.net/npm/jazz-midi-vscode')}"></script>
             <script src="${ref('node_modules/jzz/javascript/JZZ.js', 'https://cdn.jsdelivr.net/npm/jzz')}"></script>
+            <script src="${ref('node_modules/jzz-synth-tiny/javascript/JZZ.synth.Tiny.js', 'https://cdn.jsdelivr.net/npm/jzz-synth-tiny')}"></script>
             <script src="${ref('node_modules/jzz-input-kbd/javascript/JZZ.input.Kbd.js', 'https://cdn.jsdelivr.net/npm/jzz-input-kbd')}"></script>
             </head>
             <body>
             <p id="piano"></p>
             <script>
-            var piano = JZZ.input.Kbd({ at: 'piano', from: 'C5', to: 'B5' });
+            JZZ.synth.Tiny.register('Web Audio');
+            var piano = JZZ.input.Kbd({ at: 'piano', from: 'C5', to: 'B5', ww: 22, bw: 14, wl: 60, bl: 40 });
+            piano.connect(JZZ().openMidiOut());
             </script>
             </body>
             </html>`;
