@@ -18,6 +18,10 @@
           "type": "webview",
           "id": "midi-demo.piano",
           "name": "Piano"
+        },
+        {
+          "id": "midi-demo.tree",
+          "name": "MIDI"
         }
       ]
     },
