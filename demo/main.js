@@ -5,6 +5,8 @@ const info = require('./info');
 const note = require('./note');
 const scale = require('./scale');
 const piano = require('./piano');
+const midiout = require('./midi-out');
+const midiin = require('./midi-in');
 const tree = require('./tree');
 var tick;
 
@@ -38,6 +40,8 @@ function activate(context) {
     note.activate(context);
     scale.activate(context);
     piano.activate(context);
+    midiout.activate(context);
+    midiin.activate(context);
     tree.activate(context);
 }
 
@@ -48,6 +52,8 @@ function deactivate() {
     note.deactivate();
     scale.deactivate();
     piano.deactivate();
+    midiout.deactivate();
+    midiin.deactivate();
     tree.deactivate();
 }
 
