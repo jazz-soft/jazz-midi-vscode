@@ -17,7 +17,7 @@ function activate(context) {
             return JMVSC.context() == 'backend' ? panels[port].webview.asWebviewUri(vscode.Uri.file(extpath + '/' + a)) : b;
         }
        JMVSC.init(panels[port]);
-    
+
        panels[port].webview.html =`<!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +26,11 @@ function activate(context) {
 </head>
 <body>
 <h1>${port}</h1>
+<pre id=log></pre>
 <script>
+var log = document.getElementById('log');
+var port = JZZ().openMidiIn('${port}').or(() => log.innerHTML = 'Cannot open port!');
+port.connect((msg) => log.innerHTML += msg + '\\n');
 </script>
 </body>
 </html>`;

@@ -36,7 +36,7 @@ function activate(context) {
             return JMVSC.context() == 'backend' ? panel.webview.asWebviewUri(vscode.Uri.file(extpath + '/' + a)) : b;
         }
         JMVSC.init(panel);
-    
+
         panel.webview.html =`<!DOCTYPE html>
 <html>
 <head>

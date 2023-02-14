@@ -20,7 +20,7 @@ function activate(context) {
             else if (item.label == 'MIDI-In') {
                 info = (await JZZ()).info();
                 ret = [];
-                for (x of info.inputs) ret.push({ label: x.name, command: { command: 'midi-demo.midi-out', arguments: [ x.name ] } });
+                for (x of info.inputs) ret.push({ label: x.name, command: { command: 'midi-demo.midi-in', arguments: [ x.name ] } });
                 return ret;
             }
         },
