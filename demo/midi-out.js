@@ -23,10 +23,15 @@ function activate(context) {
 <head>
 <script src="${ref('node_modules/jazz-midi-vscode/main.js', 'https://cdn.jsdelivr.net/npm/jazz-midi-vscode')}"></script>
 <script src="${ref('node_modules/jzz/javascript/JZZ.js', 'https://cdn.jsdelivr.net/npm/jzz')}"></script>
+<script src="${ref('node_modules/jzz-input-kbd/javascript/JZZ.input.Kbd.js', 'https://cdn.jsdelivr.net/npm/jzz-input-kbd')}"></script>
 </head>
 <body>
 <h1>${port}</h1>
+<p id="piano"></p>
 <script>
+var piano = JZZ.input.Kbd({ at: 'piano', from: 'C5', to: 'B5' });
+var port = JZZ().openMidiOut('${port}').or(() => log.innerHTML = 'Cannot open port!');
+piano.connect(port);
 </script>
 </body>
 </html>`;

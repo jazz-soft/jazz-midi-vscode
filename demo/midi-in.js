@@ -26,7 +26,7 @@ function activate(context) {
 </head>
 <body>
 <h1>${port}</h1>
-<pre id=log></pre>
+<pre id="log"></pre>
 <script>
 var log = document.getElementById('log');
 var port = JZZ().openMidiIn('${port}').or(() => log.innerHTML = 'Cannot open port!');
