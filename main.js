@@ -8,12 +8,12 @@
   }
   else {
     if (!global) global = window;
-    if (global.JMVSC && global.JMVSC.MIDI) return;
+    if (global.JMVSC) return;
     global.JMVSC = factory();
   }
 })(this, function() {
 
-  var _ver = '1.0.0';
+  var _ver = '1.0.1';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
