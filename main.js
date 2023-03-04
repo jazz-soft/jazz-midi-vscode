@@ -13,7 +13,7 @@
   }
 })(this, function() {
 
-  var _ver = '1.0.2';
+  var _ver = '1.0.3';
   var _env = 'webextension';
   var JMVSC = {
     version: function() { return _ver; },
@@ -105,7 +105,7 @@
               if (p) p.close();
               vw.postMessage({ type: 'jazz-midi-msg', detail: ['openin', msg.detail[1], msg.detail[2]] });
               c.in.connect(function(midi) {
-                if (midi.length) vw.postMessage({ type: 'jazz-midi-msg', detail: ['midi', msg.detail[1], msg.detail[2]].concat(midi.slice()) });
+                if (midi.length) vw.postMessage({ type: 'jazz-midi-msg', detail: ['midi', msg.detail[1], 0].concat(midi.slice()) });
               });
             }, function() {
               vw.postMessage({ type: 'jazz-midi-msg', detail: ['openin', msg.detail[1], s] });
