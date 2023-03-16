@@ -75,15 +75,15 @@
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.14.6",
+    "@types/node": "^18.15.3",
     "@types/vscode": "^1.76.0",
     "@vscode/test-electron": "^2.3.0",
     "@vscode/test-web": "^0.0.35",
-    "eslint": "^8.35.0",
-    "glob": "^9.2.1",
+    "eslint": "^8.36.0",
+    "glob": "^9.3.0",
     "mocha": "^10.2.0",
     "typescript": "^4.9.5",
-    "webpack": "^5.75.0",
+    "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1"
   },
   "repository": {
