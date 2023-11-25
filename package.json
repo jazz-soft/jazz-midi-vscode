@@ -1,6 +1,6 @@
 {
   "name": "jazz-midi-vscode",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "MIDI for VSCode",
   "main": "main.js",
   "scripts": {
@@ -10,15 +10,16 @@
   },
   "keywords": [
     "midi",
+    "midi2",
     "web-midi",
     "vscode"
   ],
   "author": "jazz-soft (https://jazz-soft.net/)",
   "dependencies": {
-    "jzz": "^1.6.0"
+    "jzz": "^1.7.4"
   },
   "devDependencies": {
-    "eslint": "^8.36.0",
+    "eslint": "^8.54.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0"
   },
