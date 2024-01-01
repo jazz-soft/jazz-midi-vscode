@@ -16,10 +16,10 @@
   ],
   "author": "jazz-soft (https://jazz-soft.net/)",
   "dependencies": {
-    "jzz": "^1.7.4"
+    "jzz": "^1.7.7"
   },
   "devDependencies": {
-    "eslint": "^8.54.0",
+    "eslint": "^8.56.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0"
   },
