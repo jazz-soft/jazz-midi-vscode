@@ -42,12 +42,26 @@ JZZ.synth.Tiny.register('Web Audio');
 var player = new JZZ.gui.Player('player');
 player.select(/^(?:(?!Virtual).)*$/);
 try {
-    var smf = JZZ.MIDI.SMF(data);
+    var smf = JZZ.MIDI.Clip(data);
     player.load(smf);
     smf = smf.toString();
 }
 catch (e) {
-    smf = e.toString();
+    try {
+        var smf = JZZ.MIDI.SYX(data);
+        player.load(smf);
+        smf = smf.toString();
+    }
+    catch (e) {
+        try {
+            var smf = JZZ.MIDI.SMF(data);
+            player.load(smf);
+            smf = smf.toString();
+        }
+        catch (e) {
+            smf = e.toString();
+        }
+    }
 }
 document.getElementById('text').innerHTML = smf;
 </script>

@@ -35,6 +35,12 @@
           },
           {
             "filenamePattern": "*.midi"
+          },
+          {
+            "filenamePattern": "*.midi2"
+          },
+          {
+            "filenamePattern": "*.syx"
           }
         ]
       }
@@ -70,6 +76,7 @@
     "jzz-gui-select": "^1.1.7",
     "jzz-input-kbd": "^1.3.4",
     "jzz-midi-smf": "^1.9.7",
+    "jzz-midi-ws": "^1.0.0",
     "jzz-synth-tiny": "^1.4.2"
   },
   "devDependencies": {
